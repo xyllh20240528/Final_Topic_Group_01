@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>編輯員工資料</title>
+</head>
+<body>
+<h1>編輯員工資料</h1>
+
+<form th:action="@{/employee/updatePost}" th:object="${employee}" method="post">
+
+<input th:field="*{id}" type="hidden" />
+
+姓名: <input th:field="*{name}" required />
+<br >
+Email:  <input th:field="*{email}" required />
+ <br >
+年資: <input th:field="*{jobAge}" type="number" max="60" required />
+ <br >
+ 
+ <input type="submit" value="送出" />
+
+</form>
+
+
+</body>
+</html>

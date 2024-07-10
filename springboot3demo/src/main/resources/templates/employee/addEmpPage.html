@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>新增員工</title>
+</head>
+<body>
+<h1>新增員工</h1>
+
+
+<form th:action="@{/employee/addPost}" method="post">
+姓名: <input name="name" required />
+<br >
+Email:  <input name="email" required />
+ <br >
+年資: <input name="jobAge" type="number" max="60" required />
+ <br >
+ 
+ <input type="submit" value="送出" />
+</form>
+
+<div th:text="${okMsg}"></div>
+
+</body>
+</html>

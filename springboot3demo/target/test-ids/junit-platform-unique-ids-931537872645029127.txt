@@ -1,0 +1,1 @@
+[engine:junit-jupiter]/[class:com.example.demo.Springboot3demoApplicationTests]/[method:contextLoads()]

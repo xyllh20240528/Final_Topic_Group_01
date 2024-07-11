@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>列出訊息</title>
+</head>
+<body>
+	<div th:replace="~{layout/navbar}"></div>
+
+	<div class="container">
+
+		<h1>列出訊息</h1>
+        
+        <th:block th:each=" oneMsg : ${page.content}">
+		<div class="card">
+			<div class="card-header">
+				訊息的時間:<span th:text="${#dates.format(oneMsg.added,'yyyy年MM月dd日 HH:mm:ss EE')}"></span>
+			</div>
+			<div class="card-body">
+
+				<p>
+					<span th:text="${oneMsg.text}"></span>
+				</p>
+             <a class="btn btn-outline-secondary btn-sm" th:href="@{/messages/update(id=${oneMsg.id})}">編輯</a>
+             <a class="btn btn-outline-danger btn-sm" th:href="@{/messages/delete(id=${oneMsg.id})}">刪除</a>
+			</div>
+		</div>
+		<br>
+        </th:block>
+        
+        <ul class="pagination">
+        
+        <!--        上一頁 -->
+        <th:block th:switch="${page.number != 0}">
+        
+	        <li th:case="${true}" class="page-item">
+	            <a class="page-link" th:href="@{/messages/show(p=${page.number})}">上一頁</a>
+	        </li> 
+        
+	        <li th:case="${false}" class="page-item disabled">
+	            <a class="page-link" th:href="@{/messages/show(p=${page.number})}">上一頁</a>
+	        </li> 
+        
+        </th:block>
+        
+<!--         頁數 -->
+        <th:block  th:each=" pageNum  : ${#numbers.sequence(1, page.totalPages)}">
+        <th:block th:switch="${ pageNum != page.number+1}">
+           <li th:case="${true}" class="page-item">
+            <a class="page-link" th:href="@{/messages/show(p=${pageNum})}">[[${pageNum}]]</a>
+           </li> 
+           
+           <li th:case="${false}" class="page-item active">
+            <span class="page-link">[[${pageNum}]]</span>
+           </li>
+           
+        </th:block>
+           
+        </th:block>        
+        
+          <!--        下一頁 -->
+         <th:block th:switch="${ page.number+1 == page.totalPages }">
+          
+	        <li th:case="${false}" class="page-item">
+	            <a class="page-link" th:href="@{/messages/show(p=${page.number + 2})}">下一頁</a>
+	        </li> 
+	        
+	         <li th:case="${true}" class="page-item disabled">
+	            <a class="page-link" th:href="@{/messages/show(p=${page.number + 2})}">下一頁</a>
+	        </li> 
+        
+        </th:block>
+        </ul>
+	</div>
+
+
+</body>
+</html>

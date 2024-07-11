@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新增訊息</title>
+</head>
+<body>
+<div th:replace="~{layout/navbar}"></div>
+
+<div class="container">
+  <h1>新增訊息</h1>
+  
+  <div class="card">
+  <div class="card-header">
+    請填入新訊息
+  </div>
+  <div class="card-body">
+   
+   <form th:action="@{/messages/addPost}" method="post">
+  
+    <textarea class="form-control" name="text"></textarea>
+    
+    
+    <br>
+    <button class="btn btn-primary">送出</button>
+    </form>
+  </div>
+</div>
+
+
+<br>
+
+ <div class="card">
+  <div class="card-header">
+    最新訊息的時間:<span th:text="${lastestMsg} ?  ${#dates.format(lastestMsg.added,'yyyy年MM月dd日 HH:mm:ss EE')} "></span>
+  </div>
+  <div class="card-body">
+   
+  
+    <p><span th:text="${lastestMsg} ? ${lastestMsg.text}"></span></p>
+   
+  </div>
+</div>
+</div>
+
+
+
+
+</body>
+</html>
